@@ -1,114 +1,167 @@
-🚗 CarChoice-Hub
-Overview
-The CarChoice-Hub is a Spring Boot-based REST API designed to manage car and customer information for a car dealership or loan management system.
-It provides functionalities such as adding, updating, retrieving, deleting car and customer details, checking car price range, and tracking customer loan approval status.
+# ✅ CarChoice-Hub 🚗
 
-Features
-Add new cars and customers to the system.
+**CarChoice-Hub** is a Spring Boot project that helps manage **Car** and **Customer** entities with full CRUD operations. It also includes features such as:
 
-Update existing car and customer details.
+- 🔍 Car price range filtering  
+- 🔐 Customer login  
+- 📝 Customer loan approval status filter  
+- 🛑 Graceful project exit via API  
 
-Retrieve information using various filters (ID, price range, loan status).
+---
 
-Delete car or customer records.
+## 📌 Technologies Used
 
-Check car availability by price range.
+- Java 17+  
+- Spring Boot  
+- Spring Web  
+- Spring Validation (Jakarta)  
+- Hibernate / JPA (via DAO layer)  
+- MySQL (assumed for persistence)  
+- Postman (for testing APIs)  
 
-Track customers by loan approval status.
+---
 
-Customer login functionality.
+## 🔧 Project Structure
 
-Exit API to safely terminate the application.
+```
+com.tka.CarChoice_Hub2
+│
+├── controller
+│   ├── CarController.java
+│   └── CustomerController.java
+│
+├── service
+│   ├── CarService.java
+│   └── CustomerService.java
+│
+├── dao
+│   ├── CarDao.java
+│   └── CustomerDao.java
+│
+├── dto
+│   ├── CarUpdateDTO.java
+│   └── CustomerUpdateDTO.java
+│
+├── entity
+│   ├── Car.java
+│   └── Customer.java
+```
 
-Technologies Used
-Backend: Spring Boot, Hibernate, MySQL
+---
 
-API Testing: Postman
+## 📚 API Endpoints
 
-Setup Instructions
-Clone the Repository:
+### 🚗 Car APIs
 
-sh
-Copy
-Edit
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST   | `/car/insertCar` | Insert new car |
+| PUT    | `/car/updateCar/{id}` | Update car by ID |
+| DELETE | `/car/deleteCar/{id}` | Delete car by ID |
+| GET    | `/car/byId/{id}` | Get car by ID |
+| GET    | `/car/getAll` | Get all cars |
+| GET    | `/car/price/{startPrice}/{endPrice}` | Get cars by price range |
+| POST   | `/car/exit` | Shutdown application |
+
+### 👤 Customer APIs
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST   | `/customer/insertCustomer` | Insert new customer |
+| PUT    | `/customer/updateCustomer/{id}` | Update customer by ID |
+| DELETE | `/customer/deleteCustomer/{id}` | Delete customer by ID |
+| GET    | `/customer/getCustomerById/{id}` | Get customer by ID |
+| GET    | `/customer/getAllCustomer` | Get all customers |
+| POST   | `/customer/login` | Login (basic check) |
+| GET    | `/customer/status/{loanApprovalStatus}` | Get customers by loan status |
+| POST   | `/customer/exit` | Shutdown application |
+
+---
+
+## 🔐 Validation & DTO
+
+All insert/update APIs use `@Valid` for validating request bodies.
+
+DTOs are used to ensure clean and specific update operations:
+
+- `CarUpdateDTO`  
+- `CustomerUpdateDTO`
+
+---
+
+## 🚀 How to Run the Project
+
+### 1. Clone this repository:
+
+```bash
 git clone https://github.com/your-username/CarChoice-Hub.git
-Navigate to the Project Directory:
-
-sh
-Copy
-Edit
 cd CarChoice-Hub
-Configure Database:
+```
 
-Update application.properties with your MySQL database credentials.
+### 2. Configure the database
 
-Build and Run the Application:
+Update the `application.properties` file with your MySQL DB credentials.
 
-sh
-Copy
-Edit
+### 3. Run the project
+
+Use your IDE or terminal:
+
+```bash
 mvn spring-boot:run
-Access APIs via Postman or Browser:
+```
 
-Example endpoint: http://localhost:8080/car/getAll
+### 4. Test the APIs
 
-API Endpoints
-🔹 Car APIs
-1. Add a Car
-URL: /car/insertCar
+Use **Postman** or your browser to test the endpoints.
 
-Method: POST
+---
 
-Request Body:
+## ✅ Sample JSONs
 
-json
-Copy
-Edit
+### ➕ Insert Car
+
+```json
 {
-  "model": "Hyundai Creta",
-  "brand": "Hyundai",
-  "price": 1350000,
-  "fuelType": "Petrol",
-  "transmission": "Manual"
+    "brand": "Škoda",
+    "model": "Kushaq",
+    "fuelType": "Petrol",
+    "seatCapacity": "5",
+    "enginePower": "1498",
+    "price": "1150000"
 }
-2. Get All Cars
-URL: /car/getAll
+```
 
-Method: GET
+### ➕ Insert Customer
 
-3. Get a Car by ID
-URL: /car/byId/{id}
-
-Method: GET
-
-4. Update a Car
-URL: /car/updateCar/{id}
-
-Method: PUT
-
-Request Body (Example):
-
-json
-Copy
-Edit
+```json
 {
-  "model": "Updated Creta",
-  "price": 1450000
+  "fullName": "Anjali Sharma",
+  "email": "anjalisharma@example.com",
+  "phoneNumber": "9123456789",
+  "address": "12 Rose Garden, New Delhi",
+  "pinCode": "110001",
+  "enquiryDate": "2024-12-18",
+  "paymentMethod": "Cash on Delivery",
+  "testDriveInterest": "No",
+  "testDriveDate": "2024-12-29",
+  "testDriveResult": "Neutral",
+  "downPaymentAmount": 1800.00,
+  "loanProvider": "ICICI Bank",
+  "loanApprovalStatus": "Pending",
+  "monthlyInstallmentBudget": 550.00,
+  "customerCategory": "Middle Class",
+  "car": {
+    "id": 1
+  }
 }
-5. Delete a Car
-URL: /car/deleteCar/{id}
+```
 
-Method: DELETE
+---
 
-6. Get Cars by Price Range
-URL: /car/price/{startPrice}/{endPrice}
+## ✍️ Author
 
-Method: GET
-
-7. Exit API
-URL: /car/exit
-
-Method: POST
-
-Description: Safely terminates the application.
-
+**Samarth Prabhakar Ghule**  
+Java Full Stack Developer | Kiran Academy, Pune  
+🎓 MCA Student | BCA Graduate  
+📧 **Email**: [samarthghule89@gmail.com](mailto:samarthghule89@gmail.com)  
+📱 **Mobile**: +91 8080799587
