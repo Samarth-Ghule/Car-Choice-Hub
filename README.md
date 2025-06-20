@@ -163,6 +163,6 @@ Use **Postman** or your browser to test the endpoints.
 
 **Samarth Prabhakar Ghule**  
 Java Full Stack Developer | Kiran Academy, Pune  
-🎓 MCA Student | BCA Graduate  
+🎓 BCA Graduate  
 📧 **Email**: [samarthghule89@gmail.com](mailto:samarthghule89@gmail.com)  
 📱 **Mobile**: +91 8080799587
