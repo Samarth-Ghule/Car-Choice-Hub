@@ -24,7 +24,7 @@
 ## 🔧 Project Structure
 
 ```
-com.tka.CarChoice_Hub2
+com.tka.CarChoice_Hub
 │
 ├── controller
 │   ├── CarController.java
